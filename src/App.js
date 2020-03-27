@@ -229,12 +229,12 @@ export class App extends React.Component {
               <div>Total Cases - {this.state.data.cases} </div>
             ) : null}
           </Card>
-          <Card className="card">
+          <Card className="cardred">
             {this.state.data.deaths ? (
               <div>Total Deaths - {this.state.data.deaths} </div>
             ) : null}
           </Card>
-          <Card className="card">
+          <Card className="cardgreen">
             {this.state.data.recovered ? (
               <div>Total Recovered - {this.state.data.recovered} </div>
             ) : null}
@@ -242,10 +242,11 @@ export class App extends React.Component {
           
         </div>
         <Table
+        rowClassName={(record, index) => index % 2 === 0 ? 'table-row-light' :  'table-row-dark'}
           columns={this.state.columns}
           dataSource={this.state.countries}
           bordered
-          pagination={{ defaultPageSize: 25 }}
+          pagination={{ defaultPageSize: 30 }}
           // tableLayout = "fixed"
           scroll={{ x: 240 }}
         />
