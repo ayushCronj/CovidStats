@@ -61,7 +61,7 @@
   border: 1px solid #e3e6f0;
   border-radius: 0.35rem;
   border-color: #34b7f1;
-  color: #34b7f1
+  color: #34b7f1;
   /* padding-bottom: 15%; */
 }
 .cardgreen {
@@ -83,7 +83,6 @@
   border-radius: 0.35rem;
   border-color: green;
   color: green;
-
 }
 .cardred {
   /* background: linear-gradient(to right, #b92028, #b3040d) !important; */
@@ -113,8 +112,6 @@
   padding-bottom: 3%;
 }
 
-
-
 .anchor {
   color: blue;
 }
@@ -126,10 +123,22 @@
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
+.card2 {
+  text-align: center;
+  margin: auto;
+  font-weight: bold;
+  font-size: 15px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
 
 .image {
   height: 35px;
   width: 80px;
+}
+.image1 {
+  height: 35px;
+  width: 50px;
+  margin-right: 5%;
 }
 
 .table-row-light {
@@ -150,4 +159,35 @@
     height: 20px;
     width: 20px;
   }
+  .image1 {
+    height: 20px;
+    width: 20px;
+    margin-right: 3%;
+  }
+}
+
+.cardCountry {
+  text-align: center;
+  border: 2px solid;
+   background: linear-gradient(to right, #06beb6, #48b1bf) !important;
+   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+   color: rgb(255, 255, 255) !important;
+  width: 50%;
+  font-size: 16px;
+  text-align: center;
+  font-weight: bold;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin-left: 25%;
+  padding: 3%;
+  margin-bottom: 2%;
+  border-radius: 3 !important;
+  border-radius: 0.35rem;
+  background-color: #fff;
+  background-clip: border-box;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

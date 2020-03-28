@@ -3,8 +3,12 @@ import "./App.css";
 import axios from "axios";
 import { Table, Tag, Card, Input, Button } from "antd";
 import Highlighter from "react-highlight-words";
-import { SearchOutlined } from "@ant-design/icons";
-import { createRequire } from "module";
+import {
+  SearchOutlined,
+  LinkedinOutlined,
+  FacebookOutlined
+} from "@ant-design/icons";
+import { Redirect } from "react-router-dom";
 
 export class App extends React.Component {
   constructor(props) {
@@ -14,11 +18,13 @@ export class App extends React.Component {
       countries: [],
       columns: [
         {
-          title: 'Flag',
-          dataIndex: 'countryInfo.flag',
-          key:'countryInfo',
-          render:  (text,row) =><img className="image" src={row.countryInfo.flag}  />
-       },
+          title: "Flag",
+          dataIndex: "countryInfo.flag",
+          key: "countryInfo",
+          render: (text, row) => (
+            <img className="image" src={row.countryInfo.flag} />
+          )
+        },
         {
           title: "Country",
           dataIndex: "country",
@@ -116,7 +122,7 @@ export class App extends React.Component {
     axios
       .get("https://corona.lmao.ninja/countries?sort=country")
       .then(result => {
-        console.log(result)
+        // console.log(result);
         function compare(a, b) {
           // Use toUpperCase() to ignore character casing
           const casesA = a.cases;
@@ -192,9 +198,16 @@ export class App extends React.Component {
         setTimeout(() => this.searchInput.select());
       }
     },
-    render: text =>
+    render: (text, row) =>
       this.state.searchedColumn === dataIndex ? (
-        <a>
+        <a
+          onClick={() => {
+            this.setState({
+              redirect: true,
+              countryName: row
+            });
+          }}
+        >
           <Highlighter
             highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
             searchWords={[this.state.searchText]}
@@ -203,7 +216,17 @@ export class App extends React.Component {
           />
         </a>
       ) : (
-        <a> {text}</a>
+        <a
+          onClick={() => {
+            this.setState({
+              redirect: true,
+              countryName: row
+            });
+          }}
+        >
+          {" "}
+          {text}
+        </a>
       )
   });
 
@@ -221,6 +244,16 @@ export class App extends React.Component {
   };
 
   render() {
+    if (this.state.redirect) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/country",
+            state: this.state.countryName
+          }}
+        />
+      );
+    }
     return (
       <Card className="App">
         <div className="mainCard">
@@ -239,10 +272,11 @@ export class App extends React.Component {
               <div>Total Recovered - {this.state.data.recovered} </div>
             ) : null}
           </Card>
-          
         </div>
         <Table
-        rowClassName={(record, index) => index % 2 === 0 ? 'table-row-light' :  'table-row-dark'}
+          rowClassName={(record, index) =>
+            index % 2 === 0 ? "table-row-light" : "table-row-dark"
+          }
           columns={this.state.columns}
           dataSource={this.state.countries}
           bordered
@@ -251,13 +285,19 @@ export class App extends React.Component {
           scroll={{ x: 240 }}
         />
 
-<Card className="card1">
-            {this.state.data.updated ? (
-              <div>
-                Last Updated - {new Date(this.state.data.updated).toString()}{" "}
-              </div>
-            ) : null}
-          </Card>
+        <Card className="card1">
+          {this.state.data.updated ? (
+            <div>
+              Last Updated - {new Date(this.state.data.updated).toString()}{" "}
+            </div>
+          ) : null}
+        </Card>
+
+        <Card className="card2">
+          <div>Website By - Ayush Goel</div>
+          <a href="https://www.linkedin.com/in/ayush-goel-2609/"> <LinkedinOutlined style={{ fontSize: 22, color: "#0e76a8" }} /></a>
+          <a href="https://www.facebook.com/AwesomeAyushGoel"><FacebookOutlined style={{ fontSize: 22, color: "#3b5998" }} /> </a>
+        </Card>
       </Card>
     );
   }
