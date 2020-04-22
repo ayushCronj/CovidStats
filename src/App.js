@@ -37,7 +37,7 @@ export class App extends React.Component {
           ...this.getColumnSearchProps("country")
         },
         {
-          title: "Cases",
+          title: "Total Cases",
           dataIndex: "cases",
           key: "cases",
           sorter: (a, b) => a.cases - b.cases
@@ -46,10 +46,11 @@ export class App extends React.Component {
           title: "Today Cases",
           dataIndex: "todayCases",
           key: "todayCases",
-          sorter: (a, b) => a.todayCases - b.todayCases
+          sorter: (a, b) => a.todayCases - b.todayCases,
+          render: text => <p style={{color:"blue", fontWeight:"bold"}}>{text}</p>,
         },
         {
-          title: "Deaths",
+          title: "Total Deaths",
           dataIndex: "deaths",
           key: "deaths",
           sorter: (a, b) => a.deaths - b.deaths
@@ -58,19 +59,28 @@ export class App extends React.Component {
           title: "Today Deaths",
           dataIndex: "todayDeaths",
           key: "todayDeaths",
-          sorter: (a, b) => a.todayDeaths - b.todayDeaths
+          sorter: (a, b) => a.todayDeaths - b.todayDeaths,
+          render: text => <p style={{color:"red", fontWeight:"bold"}}>{text}</p>,
         },
         {
           title: "Recovered",
           dataIndex: "recovered",
           key: "recovered",
-          sorter: (a, b) => a.recovered - b.recovered
+          sorter: (a, b) => a.recovered - b.recovered,
+          render: text => <p style={{color:"green", fontWeight:"bold"}}>{text}</p>,
         },
         {
           title: "Active Cases",
           dataIndex: "active",
           key: "active",
           sorter: (a, b) => a.active - b.active
+        },
+        {
+          title: "Total Tests",
+          dataIndex: "tests",
+          key: "tests",
+          sorter: (a, b) => a.tests - b.tests,
+          render: text => <p style={{color:"gray", fontWeight:"bold"}}>{text}</p>,
         },
         {
           title: "Serious Cases",
@@ -237,6 +247,11 @@ export class App extends React.Component {
           <Card className="cardgreen">
             {this.state.data.recovered ? (
               <div>Total Recovered - {this.state.data.recovered} </div>
+            ) : null}
+          </Card>
+          <Card className="cardgray">
+            {this.state.data.recovered ? (
+              <div>Total Tests Conducted - {this.state.data.tests} </div>
             ) : null}
           </Card>
         </div>

@@ -76,27 +76,27 @@ export class Country extends React.Component {
 					let data1 = data[some || this.props.location.state.country];
 					let seriesData = [];
 					data1.forEach((element, index) => {
-						if (index % 2 == 0 && index > 44) {
+						if (index % 2 == 0 && index > 52) {
 							seriesData.push(element.confirmed);
 						}
 					});
 					let optionData = [];
 					data1.forEach((element, index) => {
-						if (index % 2 == 0 && index > 44) {
+						if (index % 2 == 0 && index > 52) {
 							optionData.push(element.date);
 						}
 					});
 
 					let seriesData2 = [];
 					data1.forEach((element, index) => {
-						if (index % 2 == 0 && index > 44) {
+						if (index % 2 == 0 && index > 52) {
 							seriesData2.push(element.deaths);
 						}
 					});
 
 					let seriesData3 = [];
 					data1.forEach((element, index) => {
-						if (index % 2 == 0 && index > 44) {
+						if (index % 2 == 0 && index > 52) {
 							console.log(element);
 							seriesData3.push(element.recovered);
 						}
@@ -266,6 +266,13 @@ export class Country extends React.Component {
 							</div>
 						) : null}
 					</Card>
+					{/* <Card className="cardgray">
+						{this.props.location && this.props.location.state ? (
+							<div>
+								Total Recovered - {this.props.location.state.recovered}{" "}
+							</div>
+						) : null}
+					</Card> */}
 				</div>
 
 				<div className="mainCard">

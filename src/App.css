@@ -106,11 +106,33 @@
   /* padding-bottom: 3%; */
 }
 
+.cardgray {
+  /* background: linear-gradient(to right, #20b934, #04b321) !important; */
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  /* color: rgb(255, 255, 255) !important; */
+  border-radius: 3 !important;
+  font-size: 16px;
+  text-align: center;
+  font-weight: bold;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid #e3e6f0;
+  border-radius: 0.35rem;
+  border-color: gray;
+  color: gray;
+}
+
 .mainCard {
   display: flex;
   justify-content: space-between;
   padding-bottom: 3%;
 }
+
 
 .mainCard1 {
   display: flex;
