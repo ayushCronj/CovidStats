@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import axios from "axios";
-import { Table, Tag, Card, Input, Button } from "antd";
+import { Table, Card, Input, Button } from "antd";
 import Highlighter from "react-highlight-words";
 import {
   SearchOutlined,
@@ -22,7 +22,11 @@ export class App extends React.Component {
           dataIndex: "countryInfo.flag",
           key: "countryInfo",
           render: (text, row) => (
-            <img className="image" src={row.countryInfo.flag} />
+            <img
+              className="image"
+              src={row.countryInfo.flag}
+              alt={row.country}
+            />
           )
         },
         {
@@ -74,57 +78,20 @@ export class App extends React.Component {
           key: "critical",
           sorter: (a, b) => a.critical - b.critical
         }
-        // {
-        //   title: "Address",
-        //   dataIndex: "address",
-        //   key: "address"
-        // },
-        // {
-        //   title: "Tags",
-        //   key: "tags",
-        //   dataIndex: "tags",
-        //   render: tags => (
-        //     <span>
-        //       {tags.map(tag => {
-        //         let color = tag.length > 5 ? "geekblue" : "green";
-        //         if (tag === "loser") {
-        //           color = "volcano";
-        //         }
-        //         return (
-        //           <Tag color={color} key={tag}>
-        //             {tag.toUpperCase()}
-        //           </Tag>
-        //         );
-        //       })}
-        //     </span>
-        //   )
-        // },
-        // {
-        //   title: "Action",
-        //   key: "action",
-        //   render: (text, record) => (
-        //     <span>
-        //       <a style={{ marginRight: 16 }}>Invite {record.name}</a>
-        //       <a>Delete</a>
-        //     </span>
-        //   )
-        // }
       ]
     };
   }
   componentDidMount() {
-    axios.get("https://corona.lmao.ninja/all").then(result => {
+    axios.get("https://corona.lmao.ninja/v2/all").then(result => {
       this.setState({
         data: result.data
       });
     });
 
     axios
-      .get("https://corona.lmao.ninja/countries?sort=country")
+      .get("https://corona.lmao.ninja/v2/countries?sort=country")
       .then(result => {
-        // console.log(result);
         function compare(a, b) {
-          // Use toUpperCase() to ignore character casing
           const casesA = a.cases;
           const casesB = b.cases;
 
@@ -295,8 +262,13 @@ export class App extends React.Component {
 
         <Card className="card2">
           <div>Website By - Ayush Goel</div>
-          <a href="https://www.linkedin.com/in/ayush-goel-2609/"> <LinkedinOutlined style={{ fontSize: 22, color: "#0e76a8" }} /></a>
-          <a href="https://www.facebook.com/AwesomeAyushGoel"><FacebookOutlined style={{ fontSize: 22, color: "#3b5998" }} /> </a>
+          <a href="https://www.linkedin.com/in/ayush-goel-2609/">
+            {" "}
+            <LinkedinOutlined style={{ fontSize: 22, color: "#0e76a8" }} />
+          </a>
+          <a href="https://www.facebook.com/AwesomeAyushGoel">
+            <FacebookOutlined style={{ fontSize: 22, color: "#3b5998" }} />{" "}
+          </a>
         </Card>
       </Card>
     );
